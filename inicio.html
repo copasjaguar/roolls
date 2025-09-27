@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Carregando...</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #333;
+      font-family: "Montserrat", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    /* Logo centralizado com pulso sutil */
+    img {
+      max-width: 200px;
+      width: 40%;
+      height: auto;
+      margin-bottom: 30px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Texto */
+    #message {
+      font-size: 1rem;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    #message.show {
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      img {
+        max-width: 150px;
+      }
+      #message {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="./contato/png/trofeu.svg" alt="Troféu Viva Sorte">
+
+  <p id="message"></p>
+
+  <script>
+    const messages = [
+      "Parabéns você foi premiado com a roleta da sorte...",
+      "Carregando Ambiente Virtual...",
+      "Você está entrando em um ambiente seguro...",
+      "Carregado com sucesso..."
+    ];
+
+    const messageEl = document.getElementById("message");
+    let index = 0;
+
+    function showNextMessage() {
+      messageEl.classList.remove("show");
+      setTimeout(() => {
+        messageEl.textContent = messages[index];
+        messageEl.classList.add("show");
+      }, 300);
+
+      index++;
+      if (index < messages.length) {
+        setTimeout(showNextMessage, 2500); // troca a cada 2.5s
+      }
+    }
+
+    // inicia animação
+    showNextMessage();
+
+    // redireciona após 10 segundos
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 10000);
+  </script>
+</body>
+</html>
